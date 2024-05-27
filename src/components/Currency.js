@@ -13,9 +13,15 @@ const Currency = () => {
         });
     }
     return (
-        <div className='currency-input'>
-            <span>Currency: ({currency})</span>
-            <input type="string" value={newCurrency} onChange={handleCurrencyChange}></input>
+        <div className='alert alert-secondary'>
+            <span>Currency: </span>
+            <select className="currency-selection" id="inputCurrencyGroupSelect01" onChange={(event) => handleCurrencyChange(event.target.value)} >
+                <option defaultValue>({newCurrency})</option>
+                <option value='$' name="dollar">$ Dollar</option>
+                <option value='£' name="pound">£ Pound</option>
+                <option value='€' name="euro">€ Euro</option>
+                <option value='₹' name="rupee">₹ Rupee</option>
+            </select>
         </div>
     );
 }

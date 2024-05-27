@@ -5,6 +5,7 @@ const Budget = () => {
     const { budget } = useContext(AppContext);
     const { dispatch } = useContext(AppContext);
     const { expenses } = useContext(AppContext);
+    const { currency } = useContext(AppContext);
     const [newBudget, setNewBudget] = useState(budget);
     const maxValue = 20000;
     const handleBudgetChange = (event) => {
@@ -31,7 +32,7 @@ const Budget = () => {
     }
     return (
 <div className='alert alert-secondary'>
-<span>Budget: £{budget}</span>
+<span>Budget: {currency}{budget} </span>
 <input type="number" step="10" min= "0" max="20000" value={newBudget} onChange={handleBudgetChange}></input>
 </div>
     );
