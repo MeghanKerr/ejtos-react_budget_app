@@ -30,20 +30,20 @@ export const AppReducer = (state, action) => {
                     ...state
                 }
             }
-            case 'RED_EXPENSE':
-                const red_expenses = state.expenses.map((currentExp)=> {
-                    if (currentExp.name === action.payload.name && currentExp.cost - action.payload.cost >= 0) {
-                        currentExp.cost =  currentExp.cost - action.payload.cost;
-                        budget = state.budget + action.payload.cost
-                    }
-                    return currentExp
-                })
-                action.type = "DONE";
-                return {
-                    ...state,
-                    expenses: [...red_expenses],
-                };
-            case 'DELETE_EXPENSE':
+        case 'RED_EXPENSE':
+            const red_expenses = state.expenses.map((currentExp)=> {
+                if (currentExp.name === action.payload.name && currentExp.cost - action.payload.cost >= 0) {
+                    currentExp.cost =  currentExp.cost - action.payload.cost;
+                    budget = state.budget + action.payload.cost
+                }
+                return currentExp
+            })
+            action.type = "DONE";
+            return {
+                ...state,
+                expenses: [...red_expenses],
+            };
+        case 'DELETE_EXPENSE':
             action.type = "DONE";
             state.expenses.map((currentExp)=> {
                 if (currentExp.name === action.payload) {
@@ -60,9 +60,9 @@ export const AppReducer = (state, action) => {
         case 'SET_BUDGET':
             action.type = "DONE";
             state.budget = action.payload;
-
             return {
                 ...state,
+                budget: action.payload
             };
         case 'CHG_CURRENCY':
             action.type = "DONE";
@@ -86,13 +86,14 @@ const initialState = {
         { id: "Human Resource", name: 'Human Resource', cost: 40 },
         { id: "IT", name: 'IT', cost: 500 },
     ],
-    currency: '£'
+    currency: '£ Pound'
 };
 
 // 2. Creates the context this is the thing our components import and use to get the state
 export const AppContext = createContext();
 
-// 3. Provider component - wraps the components we want to give access to the state
+// 3. Provider component - wraps the components we want to give access 
+// to the state
 // Accepts the children, which are the nested(wrapped) components
 export const AppProvider = (props) => {
     // 4. Sets up the app state. takes a reducer, and an initial state
